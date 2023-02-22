@@ -32,8 +32,6 @@ class ComposerAutoloaderInit0cbdc4fc2fc4d6d57cc3c94f5123009a
         call_user_func(\Composer\Autoload\ComposerStaticInit0cbdc4fc2fc4d6d57cc3c94f5123009a::getInitializer($loader));
 
         $loader->register(true);
-        echo "passou 3";
-        exit;
 
         return $loader;
     }
