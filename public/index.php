@@ -1,6 +1,8 @@
 <?php
 
-	ini_set('error_reporting', 'E_STRICT');
+	//ini_set('error_reporting', 'E_STRICT');
+	echo "passou";
+	exit;
 
 	require_once "../vendor/autoload.php";
 
