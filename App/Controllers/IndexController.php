@@ -8,6 +8,8 @@ use MF\Model\Container;
 class IndexController extends Action {
 
 	public function index() {
+		echo "passou";
+		exit;
 		$this->render('index');
 	}
 
