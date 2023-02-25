@@ -7,7 +7,7 @@
   <div id="footer">
     <ul>
     <div id="resize_animation">
-      Em Breve!
+      Site em desenvolvimento
     </div>
   </div>
 </div>
