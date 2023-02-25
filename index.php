@@ -25,7 +25,7 @@
 	width: 100vw;
 	height: 100vh;
 	/*1984*/
-	background-image: url(https://i.imgur.com/cI4te85.png);
+	background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
