@@ -7,7 +7,7 @@
   <div id="footer">
     <ul>
     <div id="resize_animation">
-      Redimensione
+      Em Breve!
     </div>
   </div>
 </div>
@@ -136,7 +136,7 @@
 	/*2002*/
 	@media (max-width: 1350px) {
 	#content {
-		background-image: url(https://i.imgur.com/jq5gXLH.png);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
 	}
 
 	li:nth-child(2) {
@@ -151,7 +151,7 @@
 	/*2011*/
 	@media (max-width: 1200px) {
 	#content {
-		background-image: url(https://i.imgur.com/MTg0Rj8.png);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
 	}
 
 	li:nth-child(3) {
@@ -166,7 +166,7 @@
 	/*2020*/
 	@media (max-width: 1050px) {
 	#content {
-		background-image: url(https://i.imgur.com/1O83EH0.png);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
 	}
 
 	li:nth-child(4) {
