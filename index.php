@@ -121,7 +121,7 @@
 	/*1994*/
 	@media (max-width: 1500px) {
 	#content {
-		background-image: url(https://i.imgur.com/KByZAEE.png);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
 	}
 
 	li:nth-child(1) {
