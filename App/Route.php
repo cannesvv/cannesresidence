@@ -330,6 +330,7 @@ namespace App;
 		);
 
 		//$this->setRoutes($routes);
+		return $routes;
 	}
 
 }
