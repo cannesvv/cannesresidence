@@ -2,10 +2,9 @@
 
 namespace App;
 
-//use MF\Init\Bootstrap;
+use MF\Init\Bootstrap;
 
-//class Route extends Bootstrap {
-	class Route {
+class Route extends Bootstrap {
 
 	protected function initRoutes() {
 
@@ -329,8 +328,7 @@ namespace App;
 			'action' => 'confirmPayment'
 		);
 
-		//$this->setRoutes($routes);
-		return $routes;
+		$this->setRoutes($routes);
 	}
 
 }
