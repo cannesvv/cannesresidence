@@ -2,9 +2,10 @@
 
 namespace App;
 
-use MF\Init\Bootstrap;
+//use MF\Init\Bootstrap;
 
-class Route extends Bootstrap {
+//class Route extends Bootstrap {
+	class Route {
 
 	protected function initRoutes() {
 
