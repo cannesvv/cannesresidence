@@ -5,6 +5,8 @@ namespace App;
 class Connection {
 
 	public static function getDb() {
+		echo $_SERVER["SERVER_NAME"];
+		exit;
 		try {
 
 			if ($_SERVER["SERVER_NAME"] == "cannesresidence.com.br"){
