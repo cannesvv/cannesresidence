@@ -329,7 +329,7 @@ namespace App;
 			'action' => 'confirmPayment'
 		);
 
-		$this->setRoutes($routes);
+		//$this->setRoutes($routes);
 	}
 
 }
