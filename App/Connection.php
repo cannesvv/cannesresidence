@@ -5,11 +5,11 @@ namespace App;
 class Connection {
 
 	public static function getDb() {
-		echo $_SERVER["SERVER_NAME"];
-		exit;
+		//echo $_SERVER["SERVER_NAME"];
+		//exit;
 		try {
 
-			if ($_SERVER["SERVER_NAME"] == "cannesresidence.com.br"){
+			if ($_SERVER["SERVER_NAME"] == "www.cannesresidence.com.br"){
 				$conn = new \PDO(
 					"mysql:host=mysql.cannesresidence.com.br:3306;dbname=cannesresidenc;charset=utf8",
 					"cannesresi_add1",
