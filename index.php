@@ -25,7 +25,7 @@
 	width: 100vw;
 	height: 100vh;
 	/*1984*/
-	background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
+	background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-3.jpeg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -121,7 +121,7 @@
 	/*1994*/
 	@media (max-width: 1500px) {
 	#content {
-		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-3.jpeg);
 	}
 
 	li:nth-child(1) {
@@ -136,7 +136,7 @@
 	/*2002*/
 	@media (max-width: 1350px) {
 	#content {
-		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-3.jpeg);
 	}
 
 	li:nth-child(2) {
@@ -151,7 +151,7 @@
 	/*2011*/
 	@media (max-width: 1200px) {
 	#content {
-		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-3.jpeg);
 	}
 
 	li:nth-child(3) {
@@ -166,7 +166,7 @@
 	/*2020*/
 	@media (max-width: 1050px) {
 	#content {
-		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-live.JPG);
+		background-image: url(http://cannesresidence.com.br/public/img/backgrounds/cannes-3.jpeg);
 	}
 
 	li:nth-child(4) {
