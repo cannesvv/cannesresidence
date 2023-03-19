@@ -30,7 +30,7 @@ abstract class Action {
 		//echo $_SERVER['DOCUMENT_ROOT']."App/Views/".$classAtual."/".$this->view->page.".phtml";
 		//exit;
 
-		require_once "../../../App/Views/".$classAtual."/".$this->view->page.".phtml";
+		require_once "../../App/Views/".$classAtual."/".$this->view->page.".phtml";
 	}
 }
 
