@@ -28,6 +28,11 @@ abstract class Action {
 
 		$classAtual = strtolower(str_replace('Controller', '', $classAtual));
 
+		echo getcwd().'<br>';
+		echo dirname(__FILE__).'<br>';
+		echo basename(__DIR__).'<br>';
+		exit;
+
 		require_once "../App/Views/".$classAtual."/".$this->view->page.".phtml";
 	}
 }
