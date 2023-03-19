@@ -33,7 +33,7 @@ abstract class Action {
 		//echo basename(__DIR__).'<br>';
 		//exit;
 
-		require_once "../../App/Views/".$classAtual."/".$this->view->page.".phtml";
+		require_once "./App/Views/".$classAtual."/".$this->view->page.".phtml";
 	}
 }
 
