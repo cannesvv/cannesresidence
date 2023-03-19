@@ -28,10 +28,7 @@ abstract class Action {
 
 		$classAtual = strtolower(str_replace('Controller', '', $classAtual));
 
-		//echo $_SERVER['DOCUMENT_ROOT'];
-		//exit;
-
-		require_once $_SERVER['DOCUMENT_ROOT']."App/Views/".$classAtual."/".$this->view->page.".phtml";
+		require_once "../App/Views/".$classAtual."/".$this->view->page.".phtml";
 	}
 }
 
