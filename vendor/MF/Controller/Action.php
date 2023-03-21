@@ -26,12 +26,19 @@ abstract class Action {
 
 		$classAtual = str_replace('App\\Controllers\\', '', $classAtual);
 
-		echo str_replace('Controller', '', $classAtual);
+		//echo str_replace('Controller', '', $classAtual);
 		//exit;
 
-		if(str_replace('Controller', '', $classAtual) == "ServiceProviders"){
-			$classAtual = str_replace('Controller', '', $classAtual);
-			$classAtual = str_replace('ServiceProviders', 'serviceProviders',$classAtual);
+		if(((str_replace('Controller', '', $classAtual)) == "ServiceProviders") || ((str_replace('Controller', '', $classAtual)) == "UserProfile")){
+			if(((str_replace('Controller', '', $classAtual)) == "ServiceProviders")){
+				$classAtual = str_replace('Controller', '', $classAtual);
+				$classAtual = str_replace('ServiceProviders', 'serviceProviders',$classAtual);
+			}
+
+			if(((str_replace('Controller', '', $classAtual)) == "UserProfile")){
+				$classAtual = str_replace('Controller', '', $classAtual);
+				$classAtual = str_replace('UserProfile', 'userProfile',$classAtual);
+			}
 		} else {
 			$classAtual = strtolower(str_replace('Controller', '', $classAtual));
 		}
