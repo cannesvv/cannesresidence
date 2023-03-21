@@ -25,8 +25,11 @@ abstract class Action {
 		$classAtual = get_class($this);
 
 		$classAtual = str_replace('App\\Controllers\\', '', $classAtual);
+		//echo str_replace('Controller', '', $classAtual);
+		//exit;
 
-		$classAtual = strtolower(str_replace('Controller', '', $classAtual));
+		//$classAtual = strtolower(str_replace('Controller', '', $classAtual));
+		$classAtual = str_replace('Controller', '', $classAtual);
 
 		require_once "../App/Views/".$classAtual."/".$this->view->page.".phtml";
 	}
