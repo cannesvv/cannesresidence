@@ -29,6 +29,7 @@ abstract class Action {
 		//exit;
 		if(str_replace('Controller', '', $classAtual) == "ServiceProviders"){
 			$classAtual = str_replace('Controller', '', $classAtual);
+			$classAtual = str_replace('ServiceProviders', 'serviceProviders',$classAtual);
 		} else {
 			$classAtual = strtolower(str_replace('Controller', '', $classAtual));
 		}
