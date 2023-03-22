@@ -81,7 +81,7 @@ function validaCadastroCars() {
     else {
         document.getElementById('dsc_veiculo').style = "border-bottom: 2px solid red!important;";
         document.getElementById('dsc_veiculo').focus();
-        document.getElementById('cad-invalid').innerHTML =  "* Descrição em branco";
+        document.getElementById('cad-invalid').innerHTML =  "* Descrição em branco ou insuficiente (mínimo de 4 caracteres)";
         document.getElementById('cad-invalid').style = "display: block";
         return false;
     }

@@ -21,7 +21,8 @@ class ResidentsController extends Action {
             $this->view->moradores = $moradores->getAllResidentsRegisters();
             $this->view->apartamentos = $moradores->getAllApartamentos();
             
-            $this->render('residents_admin');
+            //$this->render('residents_admin');
+            $this->render('residents_user');
         }
         else{
             $moradores = Container::getModel('Residents');

@@ -2,9 +2,9 @@
     <div class="button ml-3 text-center" onclick="sidebarUser()">
         <i class="fas fa-bars"></i>
     </div>
-    <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
+    <!-- <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-    </a>
+    </a> -->
     <button class="btn btn-light btn-user border-0 mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="text-dark">
             Olá,
@@ -104,9 +104,9 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF / RG</th>
-                                <th>UF</th>
+                                <!-- <th>UF</th> -->
                                 <th>Apartamento</th>
-                                <th>Bloco</th>
+                                <!-- <th>Bloco</th> -->
                                 <th>Entrada</th>
                                 <th>Saída</th>
                                 <th>Ações</th>
@@ -117,9 +117,9 @@
                                 <tr>
                                     <td><?= $e['nome'] ?></td>
                                     <td><?= $e['cpf_rg'] ?></td>
-                                    <td><?= $e['uf'] ?></td>
-                                    <td><?= $e['apartamento'] ?></td>
-                                    <td><?= $e['bloco'] ?></td>
+                                    <!-- <td><?= $e['uf'] ?></td> -->
+                                    <td><?= $e['dsc_apartamento'] ?></td>
+                                    <!-- <td><?= $e['bloco'] ?></td> -->
                                     <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
                                     <td>
                                         <?php if (!isset($e['data_saida'])) {
@@ -144,9 +144,9 @@
                                             <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
                                             <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
                                             <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
-                                            <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
-                                            <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
-                                            <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                            <!-- <input type="hidden" name="uf" value="<?= $e['uf'] ?>"> -->
+                                            <input type="hidden" name="apartamento" value="<?= $e['dsc_apartamento'] ?>">
+                                            <!-- <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>"> -->
                                             <abbr title="Editar registro">
                                                 <button type="submit" class="btn btn-info btn-action">
                                                     <i class="fas fa-edit"></i>
@@ -157,9 +157,9 @@
                                             <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
                                             <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
                                             <input type="hidden" name="cpf_rg" value="<?= $e['cpf_rg'] ?>">
-                                            <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
-                                            <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
-                                            <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>">
+                                            <!-- <input type="hidden" name="uf" value="<?= $e['uf'] ?>"> -->
+                                            <input type="hidden" name="apartamento" value="<?= $e['dsc_apartamento'] ?>">
+                                            <!-- <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>"> -->
                                             <input type="hidden" name="data_entrada" value="<?= $e['data_entrada'] ?>">
                                             <input type="hidden" name="data_saida" value="<?= $e['data_saida'] ?>">
                                             <abbr title="Excluir registro">
@@ -180,7 +180,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF / RG</th>
-                                <th>UF</th>
+                                <!-- <th>UF</th> -->
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -195,14 +195,14 @@
                                             echo $e['rg'];
                                         } ?>
                                     </td>
-                                    <td><?= $e['uf'] ?></td>
+                                    <!-- <td><?= $e['uf'] ?></td> -->
                                     <th>
                                         <form action="/edit_visitor" method="post" class="d-inline-block">
                                             <input type="hidden" name="id_visitante" value="<?= $e['id_visitante'] ?>">
                                             <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
                                             <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
                                             <input type="hidden" name="rg" value="<?= $e['rg'] ?>">
-                                            <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                            <!-- <input type="hidden" name="uf" value="<?= $e['uf'] ?>"> -->
                                             <abbr title="Editar registro">
                                                 <button type="submit" class="btn btn-info btn-action">
                                                     <i class="fas fa-edit"></i>
@@ -214,7 +214,7 @@
                                             <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
                                             <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
                                             <input type="hidden" name="rg" value="<?= $e['rg'] ?>">
-                                            <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
+                                            <!-- <input type="hidden" name="uf" value="<?= $e['uf'] ?>"> -->
                                             <abbr title="Excluir registro">
                                                 <button type="submit" class="btn btn-danger btn-action">
                                                     <i class="fas fa-trash-alt"></i>
@@ -261,7 +261,7 @@
                                 CPF inválido!
                             </div>
                         </div>
-                        <label id="label-uf-cadastro" class="mt-4 mb-0 text-secondary">UF</label>
+                        <!-- <label id="label-uf-cadastro" class="mt-4 mb-0 text-secondary">UF</label>
                         <select id="select-uf-cadastro" name="uf" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
                             <option value="SP">SP</option>
                             <option value="AC">AC</option>
@@ -290,7 +290,7 @@
                             <option value="SC">SC</option>
                             <option value="SE">SE</option>
                             <option value="TO">TO</option>
-                        </select>
+                        </select> -->
                         <div class="label-float mt-4" id="input-rg-cadastro">
                             <input type="text" id="cad-rg" name="rg" class="form-custom form-control mt-2" maxlength="14" size="60" placeholder="RG">
                             <label>RG</label>
@@ -330,7 +330,7 @@
                                 CPF inválido!
                             </div>
                         </div>
-                        <label id="label-uf-registro" class="mt-4 mb-0 text-secondary">UF</label>
+                        <!-- <label id="label-uf-registro" class="mt-4 mb-0 text-secondary">UF</label>
                         <select id="select-uf-registro" name="uf" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;">
                             <option value="SP">SP</option>
                             <option value="AC">AC</option>
@@ -359,20 +359,28 @@
                             <option value="SC">SC</option>
                             <option value="SE">SE</option>
                             <option value="TO">TO</option>
-                        </select>
+                        </select> -->
                         <div class="label-float mt-4" id="input-rg-registro">
                             <input type="text" id="rg" name="rg" class="form-custom form-control mt-2" maxlength="14" size="60" placeholder="RG">
                             <label>RG</label>
                         </div>
                         <div class="label-float mt-4">
-                            <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Apartamento" maxlength="5" required>
-                            <label>Apartamento</label>
+                            <!-- <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Apartamento" maxlength="5" required>
+                            <label>Apartamento</label> -->
+
+                        <!-- <label class="mt-4 mb-0 text-secondary">Apartamento</label> -->
+                        <select name="apartamento" id="apartamento" class="form-custom form-control m-0 p-0" style="border-bottom: 2px solid #20B2AA!important;" required>
+                            <option value="" disabled selected>Selecione ao Apartamento</option>
+                            <?php foreach ($this->view->apartamentos as $e) { ?>
+                                <option value="<?= $e['id_apartamento'] ?>"><?= $e['dsc_apartamento'] ?></option>
+                            <?php } ?>
+                        </select>
                         </div>
-                        <label class="mt-4 mb-0 text-secondary">Bloco</label>
+                        <!-- <label class="mt-4 mb-0 text-secondary">Bloco</label>
                         <select class="form-custom form-control m-0 p-0" name="bloco" style="border-bottom: 2px solid #20B2AA!important;">
                             <option value="A">A</option>
                             <option value="B">B</option>
-                        </select>
+                        </select> -->
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -399,9 +407,9 @@
                         <tr>
                             <th>Nome</th>
                             <th>CPF / RG</th>
-                            <th>UF</th>
+                            <!-- <th>UF</th> -->
                             <th>Apartamento</th>
-                            <th>Bloco</th>
+                            <!-- <th>Bloco</th> -->
                             <th>Entrada</th>
                             <th>Ações</th>
                         </tr>
@@ -411,9 +419,9 @@
                             <tr>
                                 <td><?= $e['nome'] ?></td>
                                 <td><?= $e['cpf_rg'] ?></td>
-                                <td><?= $e['uf'] ?></td>
-                                <td><?= $e['apartamento'] ?></td>
-                                <td><?= $e['bloco'] ?></td>
+                                <!-- <td><?= $e['uf'] ?></td> -->
+                                <td><?= $e['dsc_apartamento'] ?></td>
+                                <!-- <td><?= $e['bloco'] ?></td> -->
                                 <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
                                 <th>
                                     <form action="/register_exit_visitor" method="post" class="d-inline-block">

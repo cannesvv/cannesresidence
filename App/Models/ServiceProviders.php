@@ -71,6 +71,12 @@ class ServiceProviders extends Model{
         }
     }
 
+    public function getAllApartamentosRegisters(){
+        $stmt = $this->db->prepare("SELECT * FROM apartamento where id_usuario = " .$_SESSION['id']." and id_apartamento = ".$_SESSION['apartamento']['id_apartamento']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function updateServiceProviderEntry(){ 
         $stmt = $this->db->prepare("UPDATE prestadores_servicos SET apartamento = :apartamento, bloco = :bloco where id_prestador_servico = :id_prestador_servico");;
         $stmt->bindValue(":apartamento", $this->apartamento);
@@ -97,8 +103,19 @@ class ServiceProviders extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllRegistersEntry(){ 
-        $stmt = $this->db->prepare("SELECT * FROM prestadores_servicos ORDER BY data_entrada desc");
+    public function getAllRegistersEntry(){ //Retorna os Prestadores de serviços que estão com a saída em aberto para realizar uma exibição ao usuário
+        $stmt = $this->db->prepare("SELECT prestadores_servicos.*, apartamento.dsc_apartamento FROM prestadores_servicos 
+        inner join apartamento on prestadores_servicos.apartamento = apartamento.id_apartamento
+        ORDER BY data_entrada desc");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllRegistersEntryRegisters(){ //Retorna os Prestadores de serviços que estão com a saída em aberto para realizar uma exibição ao usuário
+        $stmt = $this->db->prepare("SELECT prestadores_servicos.*, apartamento.dsc_apartamento FROM prestadores_servicos 
+        inner join apartamento on prestadores_servicos.apartamento = apartamento.id_apartamento
+        where apartamento.id_usuario = " .$_SESSION['id']." and prestadores_servicos.apartamento = ".$_SESSION['apartamento']['id_apartamento']."
+        ORDER BY data_entrada desc");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -161,8 +178,39 @@ class ServiceProviders extends Model{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
+    public function getAllNumberServiceProvidersPresentsRegisters(){ //Retorna o número de Prestadores de serviços que estão com a saída em aberto 
+
+        $stmt = $this->db->prepare("SELECT count(*) as prestadores_servicos_presentes FROM prestadores_servicos 
+        inner join apartamento on prestadores_servicos.apartamento = apartamento.id_apartamento
+        where apartamento.id_usuario = " .$_SESSION['id']." and prestadores_servicos.apartamento = ".$_SESSION['apartamento']['id_apartamento']."
+        and  prestadores_servicos.data_saida is null");
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    
+    
     public function getAllServiceProvidersPresents(){ //Retorna os Prestadores de serviços que estão com a saída em aberto para realizar uma exibição ao usuário
-        $stmt = $this->db->prepare("SELECT * FROM prestadores_servicos WHERE data_saida is null");
+        $stmt = $this->db->prepare("SELECT prestadores_servicos.*, apartamento.dsc_apartamento FROM prestadores_servicos 
+        inner join apartamento on prestadores_servicos.apartamento = apartamento.id_apartamento
+        where  prestadores_servicos.data_saida is null");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getAllServiceProvidersPresentsRegisters(){ //Retorna os Prestadores de serviços que estão com a saída em aberto para realizar uma exibição ao usuário
+        $stmt = $this->db->prepare("SELECT prestadores_servicos.*, apartamento.dsc_apartamento FROM prestadores_servicos 
+        inner join apartamento on prestadores_servicos.apartamento = apartamento.id_apartamento
+        where apartamento.id_usuario = " .$_SESSION['id']." and prestadores_servicos.apartamento = ".$_SESSION['apartamento']['id_apartamento']."
+        and  prestadores_servicos.data_saida is null");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllResidentsRegistersCondomino(){
+        $stmt = $this->db->prepare("SELECT moradores.*, apartamento.dsc_apartamento  FROM moradores 
+        inner join apartamento on moradores.id_apartamento = apartamento.id_apartamento
+        where apartamento.id_usuario = " .$_SESSION['id']." and moradores.id_apartamento = ".$_SESSION['apartamento']['id_apartamento']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -2,9 +2,9 @@
     <div class="button ml-3 text-center" onclick="sidebarUser()">
         <i class="fas fa-bars"></i>
     </div>
-    <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
+    <!-- <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-    </a>
+    </a> -->
     <button class="btn btn-light btn-user border-0 mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="text-dark">
             Olá,
@@ -126,7 +126,7 @@
                             <?php foreach ($this->view->registros_entrada as $e) { ?>
                                 <tr>
                                     <td><?= $e['dsc_veiculo'] ?></td>
-                                    <td><?= $e['cor_veiculo'] ?></td>
+                                    <td style="background-color: <?= $e['cor_veiculo'] ?>;"></td>
                                     <td><?= $e['placa_veiculo'] ?></td>
                                     <td><?= $e['dsc_vaga_garagem'] ?></td>
                                     <td>
@@ -161,7 +161,7 @@
                     <div class="card card-body border-0 pt-0">
                         <div class="label-float">
                             <input type="text" name="dsc_veiculo" id="dsc_veiculo" class="form-custom form-control mt-2" size="60" placeholder="Nome Veículo" maxlength="60" required onkeyup="validarDsc(this)" autofocus>
-                            <label>Nome Veículo</label>
+                            <label>Nome/Marca do Veículo</label>
                         </div>
                         <br>
                         <label id="label-placa_veiculo" class="mt-4 mb-0 text-secondary">Cor do Veículo</label>

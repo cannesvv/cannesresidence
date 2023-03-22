@@ -25,16 +25,19 @@ class ServiceProvidersController extends Action {
             $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresents();
             $this->view->apartamentos = $prestadores_servicos->getAllApartamentos();   
 
-            $this->render('service_providers_admin');
+            //$this->render('service_providers_admin');
+            $this->render('service_providers_user');
         }
         else{
             $prestadores_servicos = Container::getModel('ServiceProviders');
             
-            $this->view->registros_entrada = $prestadores_servicos->getAllRegistersEntry();
+            $this->view->registros_entrada = $prestadores_servicos->getAllRegistersEntryRegisters();
             $this->view->prestadores_servicos_cadastrados = $prestadores_servicos->getAllServiceProvidersRegisters();
-            $this->view->total_prestadores_servicos_presentes = $prestadores_servicos->getAllNumberServiceProvidersPresents()['prestadores_servicos_presentes'];
-            $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresents();
+            $this->view->total_prestadores_servicos_presentes = $prestadores_servicos->getAllNumberServiceProvidersPresentsRegisters()['prestadores_servicos_presentes'];
+            $this->view->prestadores_servicos_presentes = $prestadores_servicos->getAllServiceProvidersPresentsRegisters();
+            $this->view->apartamentos = $prestadores_servicos->getAllApartamentosRegisters(); 
             
+
             $this->render('service_providers_user');
         }  
     }

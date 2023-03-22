@@ -49,7 +49,7 @@ class Residents extends Model{
     }
 
     public function getAllResidentsRegisters(){
-        $stmt = $this->db->prepare("SELECT moradores.*, apartamento.dsc_apartamento as apartamento FROM moradores
+        $stmt = $this->db->prepare("SELECT moradores.*, apartamento.dsc_apartamento as dsc_apartamento FROM moradores
         inner join apartamento on moradores.id_apartamento = apartamento.id_apartamento");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

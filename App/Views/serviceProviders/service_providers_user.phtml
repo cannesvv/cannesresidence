@@ -2,9 +2,9 @@
     <div class="button ml-3 text-center" onclick="sidebarUser()">
         <i class="fas fa-bars"></i>
     </div>
-    <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
+    <!-- <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
         <i class="fa fa-calendar" aria-hidden="true"></i>
-    </a>
+    </a> -->
     <button class="btn btn-light btn-user border-0 mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="text-dark">
             Olá,
@@ -104,7 +104,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF / RG</th>
-                                <th>UF</th>
+                                <!-- <th>UF</th> -->
                                 <th>Apartamento</th>
                                 <!-- <th>Bloco</th> -->
                                 <th>Entrada</th>
@@ -117,8 +117,8 @@
                                 <tr>
                                     <td><?= $e['nome'] ?></td>
                                     <td><?= $e['cpf_rg'] ?></td>
-                                    <td><?= $e['uf'] ?></td>
-                                    <td><?= $e['apartamento'] ?></td>
+                                    <!-- <td><?= $e['uf'] ?></td> -->
+                                    <td><?= $e['dsc_apartamento'] ?></td>
                                     <!-- <td><?= $e['bloco'] ?></td> -->
                                     <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
                                     <td>
@@ -147,11 +147,11 @@
                                             <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
                                             <input type="hidden" name="apartamento" value="<?= $e['apartamento'] ?>">
                                             <!-- <input type="hidden" name="bloco" value="<?= $e['bloco'] ?>"> -->
-                                            <abbr title="Editar registro">
+                                            <!-- <abbr title="Editar registro">
                                                 <button type="submit" class="btn btn-info btn-action">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                            </abbr>
+                                            </abbr> -->
                                         </form>
                                         <form action="/remove_service_provider_entry" method="post" class="d-inline-block">
                                             <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
@@ -180,7 +180,7 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>CPF / RG</th>
-                                <th>UF</th>
+                                <!-- <th>UF</th> -->
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -195,7 +195,7 @@
                                             echo $e['rg'];
                                         } ?>
                                     </td>
-                                    <td><?= $e['uf'] ?></td>
+                                    <!-- <td><?= $e['uf'] ?></td> -->
                                     <th>
                                         <form action="/edit_service_provider" method="post" class="d-inline-block">
                                             <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
@@ -203,11 +203,11 @@
                                             <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
                                             <input type="hidden" name="rg" value="<?= $e['rg'] ?>">
                                             <input type="hidden" name="uf" value="<?= $e['uf'] ?>">
-                                            <abbr title="Editar registro">
+                                            <!-- <abbr title="Editar registro">
                                                 <button type="submit" class="btn btn-info btn-action">
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                            </abbr>
+                                            </abbr> -->
                                         </form>
                                         <form action="/remove_service_provider" method="post" class="d-inline-block">
                                             <input type="hidden" name="id_prestador_servico" value="<?= $e['id_prestador_servico'] ?>">
@@ -405,7 +405,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>CPF / RG</th>
-                            <th>UF</th>
+                            <!-- <th>UF</th> -->
                             <th>Apartamento</th>
                             <!-- <th>Bloco</th> -->
                             <th>Entrada</th>
@@ -417,8 +417,8 @@
                             <tr>
                                 <td><?= $e['nome'] ?></td>
                                 <td><?= $e['cpf_rg'] ?></td>
-                                <td><?= $e['uf'] ?></td>
-                                <td><?= $e['apartamento'] ?></td>
+                                <!-- <td><?= $e['uf'] ?></td> -->
+                                <td><?= $e['dsc_apartamento'] ?></td>
                                 <!-- <td><?= $e['bloco'] ?></td> -->
                                 <td><?= date('d/m/Y H:i', strtotime($e['data_entrada'])) ?></td>
                                 <th>

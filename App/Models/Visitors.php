@@ -51,6 +51,18 @@ class Visitors extends Model{
         }
     }
 
+    public function getAllApartamentos(){
+        $stmt = $this->db->prepare("SELECT * FROM apartamento");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllApartamentosRegisters(){
+        $stmt = $this->db->prepare("SELECT * FROM apartamento where id_usuario = " .$_SESSION['id']." and id_apartamento = ".$_SESSION['apartamento']['id_apartamento']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function registerExit(){
         $stmt = $this->db->prepare("UPDATE visitantes SET data_saida = :data_saida where id_visitante = :id_visitante");
         $stmt->bindValue(":data_saida", $this->data_saida);
@@ -99,7 +111,18 @@ class Visitors extends Model{
     }
 
     public function getAllRegistersEntry(){ 
-        $stmt = $this->db->prepare("SELECT * FROM visitantes ORDER BY data_entrada desc");
+        $stmt = $this->db->prepare("SELECT visitantes.*, apartamento.dsc_apartamento FROM visitantes 
+        inner join apartamento on visitantes.apartamento = apartamento.id_apartamento
+        ORDER BY data_entrada desc");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllRegistersEntryRegisters(){ 
+        $stmt = $this->db->prepare("SELECT visitantes.*, apartamento.dsc_apartamento FROM visitantes 
+        inner join apartamento on visitantes.apartamento = apartamento.id_apartamento
+        where apartamento.id_usuario = " .$_SESSION['id']." and visitantes.apartamento = ".$_SESSION['apartamento']['id_apartamento']."
+        ORDER BY data_entrada desc");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -163,7 +186,9 @@ class Visitors extends Model{
     }
 
     public function getAllVisitorsPresents(){ //Retorna os visitantes que estão com a saída em aberto para realizar uma exibição ao usuário
-        $stmt = $this->db->prepare("SELECT * FROM visitantes WHERE data_saida is null");
+        $stmt = $this->db->prepare("SELECT visitantes.*, apartamento.dsc_apartamento  FROM visitantes 
+        inner join apartamento on visitantes.apartamento = apartamento.id_apartamento
+        WHERE visitantes.data_saida is null");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
