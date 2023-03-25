@@ -1,10 +1,10 @@
-<header id="header" class="header-adm d-flex align-items-center justify-content-between">
-    <div class="d-xl-block d-none button ml-3 text-center" onclick="sidebarAdm()">
+<header id="header" class="header d-flex align-items-center justify-content-between position-fixed">
+    <div class="button ml-3 text-center" onclick="sidebarUser()">
         <i class="fas fa-bars"></i>
     </div>
-    <div class="d-xl-none d-block button ml-3 text-center" onclick="sidebarSecretAdm()">
-        <i class="fas fa-bars"></i>
-    </div>
+    <!-- <a href="leisure_areas" class="btn btn-dark text-white ml-auto mr-1" title="Consultar eventos agendados">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+    </a> -->
     <button class="btn btn-light btn-user border-0 mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="text-dark">
             Olá,
@@ -30,95 +30,25 @@
         </a>
     </div>
 </header>
-<aside id="menu-adm" class="menu-adm" style="margin-left:0px">
-    <h4 class="pl-3 text-white logo">Access</h4>
-    <small class="pl-3 text-white subtitle-menu-adm">Menu</small>
-    <nav>
-        <ul class="menu-list">
-            <a class="d-flex justify-content-between align-items-center p-3" href="/dashboard">
-                <div>
-                    <i class="fas fa-chart-line icon"></i>
-                    <span>Dashboard</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/residents">
-                <div>
-                    <i class="fas fa-building icon"></i>
-                    <span>Moradores</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/visitors">
-                <div>
-                    <i class="fas fa-walking icon"></i>
-                    <span>Visitantes</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/service_providers">
-                <div>    
-                    <i class="fas fa-toolbox icon"></i>
-                    <span>Prestadores de serviços</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3 active" href="/orders">
-                <div>    
-                    <i class="fas fa-dolly icon"></i>
-                    <span>Encomendas</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/leisure_areas">
-                <div>    
-                    <i class="fas fa-gamepad icon"></i>
-                    <span>Áreas de lazer</span>
-                </div>
-            </a>
-        </ul>
-    </nav>
-</aside>
-<aside id="menu-secret-adm" class="menu-secret-adm" style="margin-left:-18rem">
-    <h4 class="pl-3 text-white logo">Access</h4>
-    <small class="pl-3 text-white subtitle-menu-adm">Menu</small>
-    <nav>
-        <ul class="menu-list">
-            <a class="d-flex justify-content-between align-items-center p-3" href="/dashboard">
-                <div>
-                    <i class="fas fa-chart-line icon"></i>
-                    <span>Dashboard</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/residents">
-                <div>    
-                    <i class="fas fa-building icon"></i>
-                    <span>Moradores</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/visitors">
-                <div>
-                    <i class="fas fa-walking icon"></i>
-                    <span>Visitantes</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/service_providers">
-                <div>
-                    <i class="fas fa-toolbox icon"></i>
-                    <span>Prestadores de serviços</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3 active" href="/orders">
-                <div> 
-                    <i class="fas fa-dolly icon"></i>
-                    <span>Encomendas</span>
-                </div>
-            </a>
-            <a class="d-flex justify-content-between align-items-center p-3" href="/leisure_areas">
-                <div>
-                    <i class="fas fa-gamepad icon"></i>
-                    <span>Áreas de lazer</span>
-                </div>
-            </a>
-        </ul>
-    </nav>
-</aside>
-<section class="content-adm p-3" id="content">
+<div class="container-fluid dashboard-gradient menu-user" id="menu-user" style="margin-left: -100%;">
+    <div class="row dashboard-gradient">
+        <a href="/visitors" class="col-md-6 bg-1 text-center">
+            <h1 class="text-white"><i class="fas fa-walking px-2"></i>Visitantes</h1>
+        </a>
+        <a href="/service_providers" class="col-md-6 bg-2 text-center">
+            <h1 class="text-white"><i class="fas fa-toolbox px-2"></i>Prestadores de serviços</h1>
+        </a>
+    </div>
+    <div class="row dashboard-gradient">
+        <a href="/orders" class="col-md-6 bg-3 text-center">
+            <h1 class="text-white"><i class="fas fa-dolly px-2"></i>Encomendas</h1>
+        </a>
+        <a href="/residents" class="col-md-6 bg-4 text-center">
+            <h1 class="text-white"><i class="fas fa-building px-2"></i>Moradores</h1>
+        </a>
+    </div>
+</div>
+<section class="content-user p-3" id="">
     <ol class="breadcrumb mb-4 bg-dark justify-content-between">
         <li class="breadcrumb-item active text-light">
             <h4 class="m-0"><i class="fas fa-dolly mr-3 ml-2" style="font-size:28px"></i>Encomendas</h4>
@@ -159,16 +89,40 @@
                             <td><?=date('d/m/Y H:i', strtotime($e['data_entrega']))?></td>
                             <td><?= $e['status_entrega'] ?></td>
                             <th>      
-                                <?php if($e['status_entrega'] == 'Recebido') { ?>
+                                <?php //if($e['status_entrega'] == 'Recebido') { ?>
                                     <form action="/confirm_receipt" method="post" class="d-inline-block">
                                         <input type="hidden" name="id_encomenda" value="<?=$e['id_encomenda']?>">
                                         <abbr title="Confirmar recebimento">
+                                        <?php if($e['status_entrega'] != "Recebido") {?>
                                             <button type="submit" class="btn btn-warning btn-action">
                                                 <i class="fas fa-user-check text-white"></i>
                                             </button>
+                                        <?php } else { ?> 
+                                            <button type="submit" class="btn btn-warning btn-action" disabled>
+                                                <i class="fas fa-user-check text-white"></i>
+                                            </button>
+                                        <?php } ?>  
                                         </abbr>
                                     </form>    
-                                <?php } ?>        
+                                <?php //} ?> 
+                                <!-- <form action="/msg_order" method="post" class="d-inline-block">           -->
+                                    <input type="hidden" name="dt_entrega" value="<?=date('d/m/Y H:i', strtotime($e['data_entrega']))?>">
+                                    <input type="hidden" name="empresa" value="<?=$e['empresa']?>">
+                                    <input type="hidden" name="telefone" value="<?=$e['telefone']?>">
+                                    <abbr title="Notificar Recebimento">
+                                    <?php if(strlen($e['telefone']) > 3) {?>
+                                        <a href="https://api.whatsapp.com/send?phone=<?=preg_replace("/[^0-9]/","",$e['telefone'])?>&text=Ola,%20voce%20possui%20uma%20encomenda%20da%20empresa%20<?=$e['empresa']?>%20recebida%20em%20<?=date('d/m/Y H:i', strtotime($e['data_entrega']))?>.%20Retire%20na%20portaria%20do%20Edificio%20Cannes." target="_blank">
+                                            <button type="button" class="btn btn-success btn-action">
+                                                <i class="far fa-id-card pr-2"></i>
+                                            </button>
+                                        </a>
+                                    <?php } else { ?> 
+                                        <button type="button" class="btn btn-info btn-action" disabled>
+                                                <i class="far fa-id-card pr-2"></i>
+                                        </button>
+                                    <?php } ?> 
+                                    </abbr>
+                                <!-- </form>        -->
                                 <form action="/edit_order" method="post" class="d-inline-block">          
                                     <input type="hidden" name="id_encomenda" value="<?=$e['id_encomenda']?>">
                                     <input type="hidden" name="empresa" value="<?=$e['empresa']?>">
@@ -176,9 +130,15 @@
                                     <!-- <input type="hidden" name="bloco" value="<?=$e['bloco']?>"> -->
                                     <input type="hidden" name="status_entrega" value="<?= $e['status_entrega'] ?>">
                                     <abbr title="Editar registro">
+                                    <?php if($e['status_entrega'] != "Recebido") {?>
                                         <button type="submit" class="btn btn-info btn-action">
                                             <i class="fas fa-edit"></i>
                                         </button>
+                                    <?php } else { ?> 
+                                        <button type="submit" class="btn btn-info btn-action" disabled>
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    <?php } ?> 
                                     </abbr>
                                 </form>
                                 <form action="/remove_order" method="post" class="d-inline-block"> 
@@ -189,9 +149,15 @@
                                     <input type="hidden" name="data_entrega" value="<?=$e['data_entrega']?>">
                                     <input type="hidden" name="status_entrega" value="<?= $e['status_entrega'] ?>">
                                     <abbr title="Excluir registro">
+                                    <?php if($e['status_entrega'] != "Recebido") {?>
                                         <button type="submit" class="btn btn-danger btn-action">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
+                                    <?php } else { ?> 
+                                        <button type="submit" class="btn btn-danger btn-action" disabled>
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    <?php } ?> 
                                     </abbr>
                                 </form>
                             </th>
@@ -221,13 +187,21 @@
                         </div>
                         <div class="label-float mt-4">
                             <!-- <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Apartamento" maxlength="5" required> -->
-                                <select class="form-custom form-control m-0 p-0" name="apartamento" style="border-bottom: 2px solid #20B2AA!important;">
+                                <select class="form-custom form-control m-0 p-0" name="apartamento" style="border-bottom: 2px solid #20B2AA!important;" required>
                                     <option selected disabled>Selecione o Apartamento</option>
                                     <?php foreach ($this->view->apartamentos as $e) { ?>
                                         <option value="<?= $e['id_apartamento'] ?>"><?= $e['dsc_apartamento'] ?></option>
                                     <?php } ?>
                                 </select>   
                             <!-- <label>Apartamento</label> -->
+                        </div>
+                        <div class="label-float mt-4">
+                                <select class="form-custom form-control m-0 p-0" name="morador" style="border-bottom: 2px solid #20B2AA!important;">
+                                    <option selected disabled>Selecione o Morador</option>
+                                    <?php foreach ($this->view->moradores as $e) { ?>
+                                        <option value="<?= $e['id_morador'] ?>"><?= $e['nome'] ?></option>
+                                    <?php } ?>
+                                </select>   
                         </div>
                         <!-- <label class="mt-4 mb-0 text-secondary">Bloco</label>
                         <select class="form-custom form-control m-0 p-0" name="bloco" style="border-bottom: 2px solid #20B2AA!important;">

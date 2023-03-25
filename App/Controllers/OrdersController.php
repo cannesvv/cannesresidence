@@ -20,10 +20,13 @@ class OrdersController extends Action {
             $encomendas = Container::getModel('Orders');
             $this->view->apartamentos = $encomendas->getAllApartamentos();   
             $this->view->encomendas   = $encomendas->getAllOrdersRegisters();
+            $this->view->moradores    = $encomendas->getAllMoradoresRegisters();
             $this->render('orders_admin');
+            
         }
         else{
             $encomendas = Container::getModel('Orders');
+            $this->view->apartamentos = $encomendas->getAllApartamentosRegisters(); 
             $this->view->encomendas = $encomendas->getAllOrdersRegistersInUser();
             $this->render('orders_user');
         }  
@@ -37,6 +40,7 @@ class OrdersController extends Action {
             $encomendas->empresa = $_POST['empresa'];
             $encomendas->apartamento = $_POST['apartamento'];
             $encomendas->bloco = null;//$_POST['bloco'];
+            $encomendas->morador = $_POST['morador'];
             $encomendas->registerOrder();
             echo "<script>alert('Encomenda cadastrada com sucesso!')</script>";
         }

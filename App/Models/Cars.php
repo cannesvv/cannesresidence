@@ -103,6 +103,16 @@ class Cars extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllVeiculosRegistersGeral(){ 
+        $stmt = $this->db->prepare("SELECT veiculo.*, vaga_garagem.dsc_vaga_garagem FROM veiculo 
+        INNER join vaga_garagem on vaga_garagem.id_vaga_garagem = veiculo.id_vaga_garagem 
+        INNER join apartamento on apartamento.id_apartamento = vaga_garagem.id_apartamento 
+        INNER join usuarios on usuarios.id_usuario = apartamento.id_usuario");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function getAllVagas($id){ 
         $stmt = $this->db->prepare("SELECT vaga_garagem.* FROM vaga_garagem 
         INNER join apartamento on apartamento.id_apartamento = vaga_garagem.id_apartamento 

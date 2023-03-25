@@ -10,6 +10,7 @@ class Orders extends Model{
     private $empresa;
     private $apartamento;
     private $bloco;
+    private $morador;
     private $data_atual;
     private $data_inicio;
     private $data_fim;
@@ -24,10 +25,11 @@ class Orders extends Model{
     }
 
     public function registerOrder(){
-        $stmt = $this->db->prepare("INSERT INTO encomendas(empresa, apartamento, bloco) values(:empresa, :apartamento, :bloco)");
+        $stmt = $this->db->prepare("INSERT INTO encomendas(empresa, apartamento, bloco, morador, status_entrega) values(:empresa, :apartamento, :bloco, :morador, 'Coletado')");
         $stmt->bindValue(":empresa", $this->empresa);
         $stmt->bindValue(":apartamento", $this->apartamento);
         $stmt->bindValue(":bloco", $this->bloco);
+        $stmt->bindValue(":morador", $this->morador);
         $stmt->execute();
     }
 
@@ -54,8 +56,15 @@ class Orders extends Model{
     }
 
     public function getAllOrdersRegisters(){
-        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento  FROM encomendas
-        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento");
+        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento, moradores.telefone  FROM encomendas
+        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
+        left join moradores on encomendas.morador = moradores.id_morador");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getAllMoradoresRegisters(){
+        $stmt = $this->db->prepare("SELECT *  FROM moradores");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -114,6 +123,12 @@ class Orders extends Model{
 
     public function getAllApartamentos(){
         $stmt = $this->db->prepare("SELECT * FROM apartamento");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllApartamentosRegisters(){
+        $stmt = $this->db->prepare("SELECT * FROM apartamento where id_usuario = " .$_SESSION['id']." and id_apartamento = ".$_SESSION['apartamento']['id_apartamento']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

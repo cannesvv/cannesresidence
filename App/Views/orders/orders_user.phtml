@@ -93,9 +93,15 @@
                                     <form action="/confirm_receipt" method="post" class="d-inline-block">
                                         <input type="hidden" name="id_encomenda" value="<?=$e['id_encomenda']?>">
                                         <abbr title="Confirmar recebimento">
+                                        <?php if($e['status_entrega'] != "Recebido") {?>
                                             <button type="submit" class="btn btn-warning btn-action">
                                                 <i class="fas fa-user-check text-white"></i>
                                             </button>
+                                        <?php } else { ?> 
+                                            <button type="submit" class="btn btn-warning btn-action" disabled>
+                                                <i class="fas fa-user-check text-white"></i>
+                                            </button>
+                                        <?php } ?> 
                                         </abbr>
                                     </form>    
                                 <?php } ?>   

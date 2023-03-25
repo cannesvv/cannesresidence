@@ -16,17 +16,27 @@ class CarsController extends Action {
 
 	public function cars(){
         $this->validateAuthentication();
-        if($_SESSION['nivel_acesso'] == 'administrador'){
+        //if($_SESSION['nivel_acesso'] == 'administrador'){
+        if(($_SESSION['nivel_acesso'] == 'administrador') || ($_SESSION['nivel_acesso'] == 'porteiro')){
             $visitantes = Container::getModel('Visitors');
             $veiculo = Container::getModel('Cars');
             
-            $this->view->registros_entrada = $veiculo->getAllVeiculosRegisters($_SESSION['id']);
+           //$this->view->registros_entrada = $veiculo->getAllVeiculosRegisters($_SESSION['id']);
+           //$this->view->vagas_garagem = $veiculo->getAllVagas($_SESSION['id']);
+           //$this->view->visitantes_cadastrados = $visitantes->getAllVisitorsRegisters();
+           //$this->view->total_visitantes_presentes = $visitantes->getAllNumberVisitorsPresents()['visitantes_presentes'];
+           //$this->view->visitantes_presentes = $visitantes->getAllVisitorsPresents();
+
+           $this->view->registros_entrada = $veiculo->getAllVeiculosRegistersGeral($_SESSION['id']);
             $this->view->vagas_garagem = $veiculo->getAllVagas($_SESSION['id']);
+            $this->view->vagas_garagemDisponivel = $veiculo->getAllVagasDisponivel($_SESSION['id']);
+            $this->view->cont_vagas= $veiculo->getCountVagas($_SESSION['id'])['total_vagas'];
+            $this->view->cont_veiculos = $veiculo->getCountVeiculos($_SESSION['id'])['total_veiculos'];
             $this->view->visitantes_cadastrados = $visitantes->getAllVisitorsRegisters();
             $this->view->total_visitantes_presentes = $visitantes->getAllNumberVisitorsPresents()['visitantes_presentes'];
             $this->view->visitantes_presentes = $visitantes->getAllVisitorsPresents();
 
-            $this->render('cars_admin');
+            $this->render('cars_user');
         }
         else{ 
             $visitantes = Container::getModel('Visitors');
