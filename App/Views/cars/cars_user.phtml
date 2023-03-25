@@ -21,6 +21,7 @@
                 Meu Perfil
             </span>
         </a>
+        <?php if(($_SESSION['nivel_acesso'] !== 'administrador') && ($_SESSION['nivel_acesso'] !== 'porteiro')){?>
         <hr class="m-0">
         <a href="#" data-toggle="modal" data-target="#apartamento-modal">
         <i class="fa fa-building" aria-hidden="true"></i>
@@ -28,6 +29,7 @@
                 Apartamento(s)
             </span>
         </a>
+        <?php } ?>
         <hr class="m-0">
         <a href="/sign_out">
             <i class="fas fa-sign-out-alt"></i>
@@ -372,7 +374,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content border-0">
             <div class="modal-header text-center align-items-center">
-                <h4 class="modal-title font-weight-bold text-secondary">Apartamento(s)</h4>
+                <h4 class="modal-title font-weight-bold text-secondary">Apartamento(s4)</h4>
                 <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">  
                     <span aria-hidden="true">&times;</span>
                 </button>
