@@ -53,6 +53,19 @@ class Route extends Bootstrap {
 			'controller' => 'UserProfileController',
 			'action' => 'updateProfile'
 		);
+		
+		$routes['edit_user'] = array(
+			'route' => '/edit_user',
+			'controller' => 'UserProfileController',
+			'action' => 'updateUser'
+		);
+		
+		$routes['user'] = array(
+			'route' => '/user',
+			'controller' => 'UserProfileController',
+			'action' => 'listProfile'
+		);
+
 		$routes['dashboard'] = array(
 			'route' => '/dashboard',
 			'controller' => 'DashboardController',

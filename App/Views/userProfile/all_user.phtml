@@ -1,0 +1,163 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
+
+<header id="header" class="header d-flex align-items-center justify-content-between position-fixed">
+    <div class="button ml-3 text-center" onclick="sidebarUser()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <button class="btn btn-light btn-user border-0 mr-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="text-dark">
+            Olá,
+        </span>
+        <span class="text-secondary mr-1">
+            <?= $_SESSION['nome'] ?>
+        </span>
+        <img width="35" height="35" src="img/users/<?= $_SESSION['imagem_usuario'] ?>">
+    </button>
+    <div class="dropdown-menu drop" aria-labelledby="dropdownMenuButton">
+        <a href="/my_profile">
+            <i class="fas fa-user-alt"></i>
+            <span class="ml-2">
+                Meu Perfil
+            </span>
+        </a>
+        <?php if(($_SESSION['nivel_acesso'] !== 'administrador') && ($_SESSION['nivel_acesso'] !== 'porteiro')){?>
+        <a href="#" data-toggle="modal" data-target="#apartamento-modal">
+        <i class="fa fa-building" aria-hidden="true"></i>
+            <span class="ml-2">
+                Apartamento(s)
+            </span>
+        </a>
+        <?php } ?>
+        <hr class="m-0">
+        <a href="/sign_out">
+            <i class="fas fa-sign-out-alt"></i>
+            <span class="ml-2">
+                Sair
+            </span>
+        </a>
+    </div>
+</header>
+<div class="container-fluid dashboard-gradient menu-user" id="menu-user" style="margin-left: -100%;">
+    <div class="row dashboard-gradient">
+        <a href="/visitors" class="col-md-6 bg-1 text-center">
+            <h1 class="text-white"><i class="fas fa-walking px-2"></i>Visitantes</h1>
+        </a>
+        <a href="/service_providers" class="col-md-6 bg-2 text-center">
+            <h1 class="text-white"><i class="fas fa-toolbox px-2"></i>Prestadores de serviços</h1>
+        </a>
+    </div>
+    <div class="row dashboard-gradient">
+        <a href="/orders" class="col-md-6 bg-3 text-center">
+            <h1 class="text-white"><i class="fas fa-dolly px-2"></i>Encomendas</h1>
+        </a>
+        <a href="/residents" class="col-md-6 bg-4 text-center">
+            <h1 class="text-white"><i class="fas fa-building px-2"></i>Moradores</h1>
+        </a>
+    </div>
+</div>
+<section class="content-user p-3" id="">
+    <!-- <ol class="breadcrumb mb-4 bg-dark justify-content-between">
+        <li class="breadcrumb-item active text-light">
+            <h4 class="m-0"><i class="fas fa-building mr-3 ml-2" style="font-size:28px"></i>Usuários</h4>
+        </li>
+        <button class="btn bg-transparent btn-exports px-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-v text-white"></i>
+        </button>
+        <div class="dropdown-menu drop p-0" aria-labelledby="dropdownMenuButton">
+            <h6 class="p-2">Exportar</h6>
+            <a href="/export_residents" class="px-2">
+                <i class="far fa-file-excel"></i>
+                <span class="ml-1">Para Excel</span>
+            </a>
+        </div>
+    </ol> -->
+    <div class="card mb-4 border-0 shadow">
+        <!-- <div class="card-header text-center add" data-toggle="modal" data-target="#form-modal">
+            <h5 class="m-0"><i class="fas fa-user mr-1"></i>Cadastrar Morador</h5>
+        </div> -->
+        <div class="card-body table-responsive pt-1">
+            <table class="table-bordered table-hover mb-0 display responsive nowrap" style="width:100%" id="dataTable">
+                <thead class="text-center card-header text-dark">
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <!-- <th>Bloco</th> -->
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <?php foreach ($this->view->usuarios as $e) { ?>
+                        <tr>
+                        <form action="/edit_user" method="post" class="d-inline-block">
+                        <td><input type="text" name="nome" value="<?= $e['nome'] ?>"></td>
+                            <td><input type="text" name="cpf" id="cpf_<?= $e['id_usuario'] ?>" onkeypress='mascaraMutuario(this,cpfCnpj);' onkeydown="mascaraMutuario(this,cpfCnpj);" onpaste="mascaraMutuario(this,cpfCnpj)" onblur='clearTimeout()'  maxlength="18" value="<?= $e['cpf'] ?>"></td>
+                            <td><input type="text" name="telefone" class="telefone" value="<?= $e['telefone'] ?>">
+                            </td>
+                            <td><input type="text" name="email" value="<?= $e['email'] ?>"></td>
+                            <!-- <td><?//= $e['bloco'] ?></td> -->
+                            <th>
+                                <!-- <form action="/edit_resident" method="post" class="d-inline-block"> -->
+                                    <input type="hidden" name="id_usuario" value="<?= $e['id_usuario'] ?>">
+                                    <!-- <input type="hidden" name="nome" value="<?= $e['nome'] ?>">
+                                    <input type="hidden" name="cpf" value="<?= $e['cpf'] ?>">
+                                    <input type="hidden" name="telefone" value="<?= $e['telefone'] ?>">
+                                    <input type="hidden" name="email" value="<?= $e['email'] ?>"> -->
+                                    <abbr title="Editar registro">
+                                        <button type="submit" class="btn btn-info btn-action">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </abbr>
+                                
+                            </th>
+                            </form>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function mascaraMutuario(o,f){
+        v_obj=o
+        v_fun=f
+        setTimeout('execmascara()',1)
+    }
+
+    function execmascara(){
+        v_obj.value=v_fun(v_obj.value)
+    }
+
+   function cpfCnpj(v){
+        if (v.length <= 14) { //CPF
+            v=v.replace(/\D/g,""); //Remove tudo o que não é dígito
+            v=v.replace(/(\d{3})(\d)/,"$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+            v=v.replace(/(\d{3})(\d)/,"$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos. de novo (para o segundo bloco de números)
+            v=v.replace(/(\d{3})(\d{1,2})$/,"$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
+            return v;
+
+        } else { //CNPJ
+            v=v.replace(/\D/g,"");  //Remove tudo o que não é dígito
+            v=v.replace(/(\d{2})(\d)/,"$1.$2"); //Coloca ponto entre o segundo e o terceiro dígitos
+            v=v.replace(/(\d{3})(\d)/,"$1.$2"); //Coloca ponto entre o quinto e o sexto dígitos
+            v=v.replace(/(\d{3})(\d)/,"$1/$2"); //Coloca barra entre o oitavo e o nono dígitos
+            v=v.replace(/(\d{4})(\d)/,"$1-$2");  //Coloca ponto entre o decimo segundo e o decimo terceiro dígitos
+            return v;
+        }
+    }
+
+    $('.telefone').mask('(00) 00000-0000');
+
+
+</script>

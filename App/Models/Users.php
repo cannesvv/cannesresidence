@@ -60,6 +60,14 @@ class Users extends Model{
         return true;
     }
 
+    
+    public function getAllUsuarios(){
+        $stmt = $this->db->prepare("SELECT * FROM usuarios order by nome");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function registerUser(){
         $stmt = $this->db->prepare("INSERT INTO usuarios(nome, email, cpf, senha, nivel_acesso) values(:nome, :email, :cpf, :senha, :nivel_acesso)");
         $stmt->bindValue(":nome", $this->nome);
@@ -138,7 +146,7 @@ class Users extends Model{
             $stmt->execute();
 
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             session_start();
             $_SESSION['id'] = $usuario['id_usuario'];
             $_SESSION['nome'] = $usuario['nome'];
@@ -150,6 +158,14 @@ class Users extends Model{
             $_SESSION['genero'] = $usuario['genero'];
             $_SESSION['imagem_usuario'] = $usuario['imagem_usuario'];
         }
+    }
+
+    public function updateUser($coluna, $valor, $id_usuario){
+        $stmt = $this->db->prepare("UPDATE usuarios SET $coluna = :valor where id_usuario = :id_usuario");
+        $stmt->bindValue(":valor", $valor);
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        $stmt->execute();
+
     }
 }
 
