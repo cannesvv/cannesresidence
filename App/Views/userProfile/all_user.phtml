@@ -94,7 +94,7 @@
                         <tr>
                         <form action="/edit_user" method="post" class="d-inline-block">
                         <td><?= $e['unidade'] ?></td>
-                        <td><input type="text" name="nome" value="<?= $e['nome'] ?>"></td>
+                        <td><input type="text" name="nome" size="30" value="<?= $e['nome'] ?>"></td>
                             <td><input type="text" name="cpf" id="cpf_<?= $e['id_usuario'] ?>" onkeypress='mascaraMutuario(this,cpfCnpj);' onkeydown="mascaraMutuario(this,cpfCnpj);" onpaste="mascaraMutuario(this,cpfCnpj)" onblur='clearTimeout()'  maxlength="18" value="<?= $e['cpf'] ?>"></td>
                             <td><input type="text" name="telefone" class="telefone" value="<?= $e['telefone'] ?>">
                             </td>
