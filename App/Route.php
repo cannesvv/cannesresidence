@@ -79,6 +79,13 @@ class Route extends Bootstrap {
 			'controller' => 'OrdersController',
 			'action' => 'orders'
 		);
+
+		$routes['orders_filter'] = array(
+			'route' => '/orders_filter',
+			'controller' => 'OrdersController',
+			'action' => 'ordersFilter'
+		);
+
 		$routes['export_orders'] = array(
 			'route' => '/export_orders',
 			'controller' => 'OrdersController',

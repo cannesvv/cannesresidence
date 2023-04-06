@@ -187,7 +187,7 @@
                         </div>
                         <div class="label-float mt-4">
                             <!-- <input type="text" name="apartamento" class="form-custom form-control mt-2" size="60" placeholder="Apartamento" maxlength="5" required> -->
-                                <select class="form-custom form-control m-0 p-0" name="apartamento" style="border-bottom: 2px solid #20B2AA!important;" required>
+                                <select class="form-custom form-control m-0 p-0" onchange="buscaMorador(this);" name="apartamento" style="border-bottom: 2px solid #20B2AA!important;" required>
                                     <option selected disabled>Selecione o Apartamento</option>
                                     <?php foreach ($this->view->apartamentos as $e) { ?>
                                         <option value="<?= $e['id_apartamento'] ?>"><?= $e['dsc_apartamento'] ?></option>
@@ -196,11 +196,11 @@
                             <!-- <label>Apartamento</label> -->
                         </div>
                         <div class="label-float mt-4">
-                                <select class="form-custom form-control m-0 p-0" name="morador" style="border-bottom: 2px solid #20B2AA!important;">
+                                <select class="form-custom form-control m-0 p-0 morador" name="morador" style="border-bottom: 2px solid #20B2AA!important;">
                                     <option selected disabled>Selecione o Morador</option>
-                                    <?php foreach ($this->view->moradores as $e) { ?>
+                                    <!-- <?php foreach ($this->view->moradores as $e) { ?>
                                         <option value="<?= $e['id_morador'] ?>"><?= $e['nome'] ?></option>
-                                    <?php } ?>
+                                    <?php } ?> -->
                                 </select>   
                         </div>
                         <!-- <label class="mt-4 mb-0 text-secondary">Bloco</label>
@@ -257,7 +257,23 @@
 </div>
 
 <script src="lib/datatables/js/query-3.5.1.js"></script>
+
 <script>
+    function buscaMorador(sValor){
+        $.ajax({
+        url: '/orders_filter',
+        type: 'POST',
+        data: {
+            idApartamento :   sValor.value
+        },
+        }).done(function(data) { 
+            debugger;
+            $(".morador").empty();
+            $(".morador").append(data);
+        });
+
+    }
+    
     // Exportação de dados
     $('#label-data-inicio').hide();
     $('#input-data-inicio').hide();

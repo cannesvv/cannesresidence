@@ -41,6 +41,13 @@ class Orders extends Model{
         $stmt->bindValue(":id_encomenda", $this->id_encomenda);
         $stmt->execute();
     }
+    
+    public function getAllMoradoresApartamentos($idApartamento){
+        $stmt = $this->db->prepare("SELECT * FROM moradores
+        where id_apartamento = ".$idApartamento);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function deleteOrder(){
         $stmt = $this->db->prepare("DELETE from encomendas where id_encomenda = :id_encomenda");

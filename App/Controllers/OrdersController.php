@@ -112,6 +112,17 @@ class OrdersController extends Action {
         echo "<script> location.href = '/orders' </script>";
     }
     
+    public function ordersFilter(){
+        $encomendas = Container::getModel('Orders');
+        $moradores = $encomendas->getAllMoradoresApartamentos($_POST['idApartamento']);
+        $xx = "<option selected disabled>Selecione o Morador</option>"; 
+   
+         foreach ($moradores as &$valor) {
+            $xx = $xx."<option value='".$valor['id_morador']."'>".$valor['nome']."</option>";
+        }
+        print_r($xx);
+    }
+    
     public function exportOrders(){
         $this->validateAuthentication();
         $encomendas = Container::getModel('Orders');
