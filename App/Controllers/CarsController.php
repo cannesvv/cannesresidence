@@ -28,8 +28,8 @@ class CarsController extends Action {
            //$this->view->visitantes_presentes = $visitantes->getAllVisitorsPresents();
 
            $this->view->registros_entrada = $veiculo->getAllVeiculosRegistersGeral($_SESSION['id']);
-            $this->view->vagas_garagem = $veiculo->getAllVagas($_SESSION['id']);
-            $this->view->vagas_garagemDisponivel = $veiculo->getAllVagasDisponivel($_SESSION['id']);
+            $this->view->vagas_garagem = $veiculo->getAllVagaGeral();
+            $this->view->vagas_garagemDisponivel = $veiculo->getAllVagaGeral();
             $this->view->cont_vagas= $veiculo->getCountVagas($_SESSION['id'])['total_vagas'];
             $this->view->cont_veiculos = $veiculo->getCountVeiculos($_SESSION['id'])['total_veiculos'];
             $this->view->visitantes_cadastrados = $visitantes->getAllVisitorsRegisters();
