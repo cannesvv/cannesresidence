@@ -161,12 +161,29 @@ class Users extends Model{
     }
 
     public function updateUser($coluna, $valor, $id_usuario){
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT $coluna as valor_anterior FROM usuarios where id_usuario = :id_usuario limit 1");
+        $stmt->bindValue(":id_usuario", $id_usuario);
+        $stmt->execute();
+
+        $ultimaAlteracao = $stmt->fetch(PDO::FETCH_ASSOC);
+
         $stmt = $this->db->prepare("UPDATE usuarios SET $coluna = :valor where id_usuario = :id_usuario");
         $stmt->bindValue(":valor", $valor);
         $stmt->bindValue(":id_usuario", $id_usuario);
         $stmt->execute();
 
+ 
+         //Insere Log
+         $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+         $stmt->bindValue(":dsc_log", "Alterar Usuario - coluna: ".$coluna." - Valor Anterior: ".$ultimaAlteracao['valor_anterior']." - Novo valor: ".$valor);
+         $stmt->bindValue(":nome_tabela_ref", "usuarios");
+         $stmt->bindValue(":id_tabela_ref", $id_usuario);
+         $stmt->bindValue(":id_usuario", $_SESSION['id']);
+         $stmt->bindValue(":tipo", "U");
+         $stmt->execute();
     }
+
 }
 
 

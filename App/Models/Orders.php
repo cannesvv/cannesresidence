@@ -31,15 +31,46 @@ class Orders extends Model{
         $stmt->bindValue(":bloco", $this->bloco);
         $stmt->bindValue(":morador", $this->morador);
         $stmt->execute();
+
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT * FROM encomendas order by id_encomenda desc limit 1");
+        $stmt->execute();
+
+        $ultimaEncomenda = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Insere Log
+        $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+        $stmt->bindValue(":dsc_log", "Cadastrar Nova Encomenda");
+        $stmt->bindValue(":nome_tabela_ref", "encomendas");
+        $stmt->bindValue(":id_tabela_ref", $ultimaEncomenda['id_encomenda']);
+        $stmt->bindValue(":id_usuario", $_SESSION['id']);
+        $stmt->bindValue(":tipo", "I");
+        $stmt->execute();
     }
 
     public function updateOrder(){
-        $stmt = $this->db->prepare("UPDATE encomendas SET empresa = :empresa, apartamento = :apartamento, bloco = :bloco where id_encomenda = :id_encomenda");
+        
+        $stmt = $this->db->prepare("UPDATE encomendas SET empresa = :empresa where id_encomenda = :id_encomenda");
         $stmt->bindValue(":empresa", $this->empresa);
-        $stmt->bindValue(":apartamento", $this->apartamento);
-        $stmt->bindValue(":bloco", $this->bloco);
         $stmt->bindValue(":id_encomenda", $this->id_encomenda);
         $stmt->execute();
+
+
+         //Busca o Ultimo ID
+         $stmt = $this->db->prepare("SELECT * FROM encomendas where id_encomenda = :id_encomenda limit 1");
+         $stmt->bindValue(":id_encomenda", $this->id_encomenda);
+         $stmt->execute();
+ 
+         $ultimaEncomenda = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+         //Insere Log
+         $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+         $stmt->bindValue(":dsc_log", "Alterar Encomenda - Empresa: ".$ultimaEncomenda['empresa']." - apartamento: ".$ultimaEncomenda['apartamento']);
+         $stmt->bindValue(":nome_tabela_ref", "encomendas");
+         $stmt->bindValue(":id_tabela_ref", $ultimaEncomenda['id_encomenda']);
+         $stmt->bindValue(":id_usuario", $_SESSION['id']);
+         $stmt->bindValue(":tipo", "U");
+         $stmt->execute();
     }
     
     public function getAllMoradoresApartamentos($idApartamento){
@@ -50,6 +81,23 @@ class Orders extends Model{
     }
 
     public function deleteOrder(){
+
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT * FROM encomendas where id_encomenda = :id_encomenda limit 1");
+        $stmt->bindValue(":id_encomenda", $this->id_encomenda);
+        $stmt->execute();
+
+        $ultimaEncomenda = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Insere Log
+        $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+        $stmt->bindValue(":dsc_log", "Deleta registro da Emcomenda - Empresa: ".$ultimaEncomenda['empresa']." - apartamento: ".$ultimaEncomenda['apartamento']);
+        $stmt->bindValue(":nome_tabela_ref", "encomendas");
+        $stmt->bindValue(":id_tabela_ref", $ultimaEncomenda['id_encomenda']);
+        $stmt->bindValue(":id_usuario", $_SESSION['id']);
+        $stmt->bindValue(":tipo", "U");
+        $stmt->execute();
+        
         $stmt = $this->db->prepare("DELETE from encomendas where id_encomenda = :id_encomenda");
         $stmt->bindValue(":id_encomenda", $this->id_encomenda);
         $stmt->execute();
@@ -59,6 +107,22 @@ class Orders extends Model{
         $stmt = $this->db->prepare("UPDATE encomendas SET status_entrega = :status_entrega where id_encomenda = :id_encomenda");
         $stmt->bindValue(":status_entrega", $this->status_entrega);
         $stmt->bindValue(":id_encomenda", $this->id_encomenda);
+        $stmt->execute();
+
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT * FROM encomendas where id_encomenda = :id_encomenda limit 1");
+        $stmt->bindValue(":id_encomenda", $this->id_encomenda);
+        $stmt->execute();
+
+        $ultimaEncomenda = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //Insere Log
+        $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+        $stmt->bindValue(":dsc_log", "Confirmado recebimento da Encomenda");
+        $stmt->bindValue(":nome_tabela_ref", "encomendas");
+        $stmt->bindValue(":id_tabela_ref", $ultimaEncomenda['id_encomenda']);
+        $stmt->bindValue(":id_usuario", $_SESSION['id']);
+        $stmt->bindValue(":tipo", "I");
         $stmt->execute();
     }
 

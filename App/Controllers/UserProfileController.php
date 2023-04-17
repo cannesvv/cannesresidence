@@ -51,7 +51,7 @@ class UserProfileController extends Action {
                 //echo "<script>alert('$msg')</script>";
             } 
         }else{
-            echo "<script>alert('3Erro ao atualizar dados!')</script>";
+            echo "<script>alert('Erro ao atualizar dados!')</script>";
         }
         // else if(isset($_POST['data_nascimento']) && strlen($_POST['data_nascimento']) == 10){
         //     $coluna = 'data_nascimento';
@@ -73,7 +73,7 @@ class UserProfileController extends Action {
                 //echo "<script>alert('$msg')</script>";
             } 
         }else{
-            echo "<script>alert('2Erro ao atualizar dados!')</script>";
+            echo "<script>alert('Erro ao atualizar dados!')</script>";
         }
 
         if(isset($_POST['cpf']) && strlen($_POST['cpf']) >= 14){
@@ -85,7 +85,7 @@ class UserProfileController extends Action {
                 //echo "<script>alert('$msg')</script>";
             } 
         }else{
-            echo "<script>alert('0Erro ao atualizar dados!')</script>";
+            echo "<script>alert('Erro ao atualizar dados!')</script>";
         }
 
         if(isset($_POST['email']) && strlen($_POST['email']) >= 5){
@@ -97,7 +97,7 @@ class UserProfileController extends Action {
                 //echo "<script>alert('$msg')</script>";
             } 
         } else{
-            echo "<script>alert('1Erro ao atualizar dados!')</script>";
+            echo "<script>alert('Erro ao atualizar dados!')</script>";
         }
         // else if(isset($_FILES['imagem']) && $_FILES['imagem'] != ''){
         //     $coluna = 'imagem_usuario';

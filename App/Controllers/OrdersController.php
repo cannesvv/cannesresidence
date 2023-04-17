@@ -63,10 +63,10 @@ class OrdersController extends Action {
 
     public function updateOrder(){
         $this->validateAuthentication();
-        if($_POST['empresa'] != '' && $_POST['apartamento'] != '' && $_POST['id_encomenda'] != ''){
+        if($_POST['empresa'] != '' && $_POST['id_encomenda'] != ''){
             $encomendas = Container::getModel('Orders');
             $encomendas->empresa = $_POST['empresa'];
-            $encomendas->apartamento = $_POST['apartamento'];
+            //$encomendas->apartamento = $_POST['apartamento'];
             //$encomendas->bloco = $_POST['bloco'];
             $encomendas->id_encomenda = $_POST['id_encomenda'];
             $encomendas->updateOrder();

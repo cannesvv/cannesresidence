@@ -26,11 +26,28 @@ class Cars extends Model{
 
     public function registerCar(){
         $stmt = $this->db->prepare("INSERT INTO veiculo(id_vaga_garagem, dsc_veiculo, cor_veiculo, placa_veiculo) values(:id_vaga_garagem, :dsc_veiculo, :cor_veiculo, :placa_veiculo)");
+        $id_vaga_garagem = $this->id_vaga_garagem;
         $stmt->bindValue(":id_vaga_garagem", $this->id_vaga_garagem);
         $stmt->bindValue(":dsc_veiculo", $this->dsc_veiculo);
         $stmt->bindValue(":cor_veiculo", $this->cor_veiculo);
         $stmt->bindValue(":placa_veiculo", $this->placa_veiculo);
         $stmt->execute();
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT * FROM veiculo where id_vaga_garagem = :id_vaga_garagem AND placa_veiculo = :placa_veiculo order by id_vaga_garagem desc limit 1");
+        $stmt->bindValue(":id_vaga_garagem", $id_vaga_garagem);
+        $stmt->bindValue(":placa_veiculo", $this->placa_veiculo);
+        $stmt->execute();
+
+        $ultimoVeiculo = $stmt->fetch(PDO::FETCH_ASSOC);
+        //Insere Log
+        $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+        $stmt->bindValue(":dsc_log", "Cadastro de Novo Veículo");
+        $stmt->bindValue(":nome_tabela_ref", "veiculo");
+        $stmt->bindValue(":id_tabela_ref", $ultimoVeiculo['id_veiculo']);
+        $stmt->bindValue(":id_usuario", $_SESSION['id']);
+        $stmt->bindValue(":tipo", "I");
+        $stmt->execute();
+
     }
 
     public function registerEntry(){
@@ -88,8 +105,26 @@ class Cars extends Model{
     }
 
     public function deleteCar(){
+
+        //Busca o Ultimo ID
+        $stmt = $this->db->prepare("SELECT * FROM veiculo where id_veiculo = :id_veiculo");
+        $stmt->bindValue(":id_veiculo", $this->id_veiculo);
+        $stmt->execute();
+
+        $ultimoVeiculo = $stmt->fetch(PDO::FETCH_ASSOC);
+
         $stmt = $this->db->prepare("DELETE from veiculo where id_veiculo = :id_veiculo");
         $stmt->bindValue(":id_veiculo", $this->id_veiculo);
+        $stmt->execute();
+
+        
+        //Insere Log
+        $stmt = $this->db->prepare("INSERT INTO log(`dsc_log`, `nome_tabela_ref`, `id_tabela_ref`, `id_usuario`, `tipo`) values(:dsc_log, :nome_tabela_ref, :id_tabela_ref, :id_usuario, :tipo)");
+        $stmt->bindValue(":dsc_log", "Excluir  Veículo - ".$ultimoVeiculo['dsc_veiculo']);
+        $stmt->bindValue(":nome_tabela_ref", "veiculo");
+        $stmt->bindValue(":id_tabela_ref", $ultimoVeiculo['id_veiculo']);
+        $stmt->bindValue(":id_usuario", $_SESSION['id']);
+        $stmt->bindValue(":tipo", "D");
         $stmt->execute();
     }
 
