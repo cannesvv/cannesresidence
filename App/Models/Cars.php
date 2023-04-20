@@ -159,7 +159,7 @@ class Cars extends Model{
     }
     
     public function getAllVagaGeral(){ 
-        $stmt = $this->db->prepare("SELECT vaga_garagem.* FROM vaga_garagem where id_vaga_garagem not in (select id_vaga_garagem from veiculo)");
+        $stmt = $this->db->prepare("SELECT vaga_garagem.* FROM vaga_garagem where id_vaga_garagem not in (select id_vaga_garagem from veiculo) ORDER BY dsc_vaga_garagem ASC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
