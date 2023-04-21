@@ -134,6 +134,24 @@ class Orders extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function getAllOrdersRegistersColetado(){
+        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento, moradores.telefone  FROM encomendas
+        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
+        left join moradores on encomendas.morador = moradores.id_morador
+        where encomendas.status_entrega = 'Coletado'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllOrdersRegistersRecebido(){
+        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento, moradores.telefone  FROM encomendas
+        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
+        left join moradores on encomendas.morador = moradores.id_morador
+        where encomendas.status_entrega = 'Recebido'");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getAllMoradoresRegisters(){
         $stmt = $this->db->prepare("SELECT *  FROM moradores");
         $stmt->execute();
@@ -145,6 +163,24 @@ class Orders extends Model{
         inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
         inner join usuarios on apartamento.id_usuario = usuarios.id_usuario
         where usuarios.id_usuario = ".$_SESSION['id']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getAllOrdersRegistersInUserColetado(){
+        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento  FROM encomendas
+        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
+        inner join usuarios on apartamento.id_usuario = usuarios.id_usuario
+        where encomendas.status_entrega = 'Coletado' and usuarios.id_usuario = ".$_SESSION['id']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllOrdersRegistersInUserRecebido(){
+        $stmt = $this->db->prepare("SELECT encomendas.*, apartamento.dsc_apartamento as apartamento  FROM encomendas
+        inner join apartamento on encomendas.apartamento = apartamento.id_apartamento
+        inner join usuarios on apartamento.id_usuario = usuarios.id_usuario
+        where encomendas.status_entrega = 'Recebido' and usuarios.id_usuario = ".$_SESSION['id']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

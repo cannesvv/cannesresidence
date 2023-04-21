@@ -72,12 +72,22 @@ class Route extends Bootstrap {
 			'action' => 'dashboard'
 		);
 
-
-
 		$routes['orders'] = array(
 			'route' => '/orders',
 			'controller' => 'OrdersController',
 			'action' => 'orders'
+		);
+
+		$routes['ordersColetado'] = array(
+			'route' => '/orders_coletado',
+			'controller' => 'OrdersController',
+			'action' => 'ordersColetado'
+		);
+
+		$routes['ordersRecebido'] = array(
+			'route' => '/orders_recebido',
+			'controller' => 'OrdersController',
+			'action' => 'ordersRecebido'
 		);
 
 		$routes['orders_filter'] = array(

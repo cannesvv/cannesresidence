@@ -32,6 +32,42 @@ class OrdersController extends Action {
         }  
     }
 
+    public function ordersColetado(){
+        $this->validateAuthentication();
+        if(($_SESSION['nivel_acesso'] == 'administrador') || ($_SESSION['nivel_acesso'] == 'porteiro')){
+            $encomendas = Container::getModel('Orders');
+            $this->view->apartamentos = $encomendas->getAllApartamentos();   
+            $this->view->encomendas   = $encomendas->getAllOrdersRegistersColetado();
+            $this->view->moradores    = $encomendas->getAllMoradoresRegisters();
+            $this->render('orders_admin');
+            
+        }
+        else{
+            $encomendas = Container::getModel('Orders');
+            $this->view->apartamentos = $encomendas->getAllApartamentosRegisters(); 
+            $this->view->encomendas = $encomendas->getAllOrdersRegistersInUserColetado();
+            $this->render('orders_user');
+        }  
+    }
+
+    public function ordersRecebido(){
+        $this->validateAuthentication();
+        if(($_SESSION['nivel_acesso'] == 'administrador') || ($_SESSION['nivel_acesso'] == 'porteiro')){
+            $encomendas = Container::getModel('Orders');
+            $this->view->apartamentos = $encomendas->getAllApartamentos();   
+            $this->view->encomendas   = $encomendas->getAllOrdersRegistersRecebido();
+            $this->view->moradores    = $encomendas->getAllMoradoresRegisters();
+            $this->render('orders_admin');
+            
+        }
+        else{
+            $encomendas = Container::getModel('Orders');
+            $this->view->apartamentos = $encomendas->getAllApartamentosRegisters(); 
+            $this->view->encomendas = $encomendas->getAllOrdersRegistersInUserRecebido();
+            $this->render('orders_user');
+        }  
+    }
+
     public function registerOrder(){
         $this->validateAuthentication();
         //if($_POST['empresa'] != '' &&  $_POST['apartamento'] != '' &&  $_POST['bloco'] != ''){
