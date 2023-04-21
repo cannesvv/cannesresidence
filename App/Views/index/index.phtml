@@ -2,7 +2,7 @@
 	<div class="panel-img col-xl-6 d-xl-inline-block d-none"></div>
 	<div class="panel-login col-xl-6 col-12 d-flex align-items-center">
 		<div class="login-box m-auto">
-			<h2 class="title text-secondary text-center">Entre ou cadastre-se</h2>
+			<h2 class="title text-secondary text-center">Entre</h2>
 			<form action="/authenticate" method="post">
 				<div class="label-float mt-4">    
 					<input type="email" name="email" class="form-custom form-control mt-1 bg-transparent input-login" size="60" maxlength="60" placeholder="" required>
@@ -20,6 +20,58 @@
 				<?php } ?>
 				<!-- <a href="/sign_up" class="mt-2 d-block register-link">Ainda não possui cadastro? clique aqui</a> -->
 			</form>
+			<a href="http://webmail.cannesresidence.com.br/" target="_blank" class="mt-2 d-block register-link">
+				<i class="fa fa-envelope" aria-hidden="true"></i>
+				<span class="ml-2">
+					Acessar Webmail
+				</span>
+			</a>
+			<a href="#" data-toggle="modal" data-target="#ajuda-modal">
+			<i class="fa fa-question-circle" aria-hidden="true"></i>
+				<span class="ml-2">
+					Ajuda
+				</span>
+			</a>
 		</div>
 	</div>
+</div>
+
+<!-- Modal de Ajuda -->
+<div class="modal fade" id="ajuda-modal" tabindex="-1" role="dialog" aria-labelledby="title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-0">
+            <div class="modal-header text-center align-items-center">
+                <h4 class="modal-title font-weight-bold text-secondary">Ajuda</h4>
+                <button type="button" class="close border-0" data-dismiss="modal" aria-label="Close">  
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="seleciona_apartamento" method="post">
+                <div class="modal-body py-4">
+                    <div class="card card-body border-0 pt-0">
+                        <label class="mt-4 mb-0 text-secondary"><b>Obtendo o Acesso</b></label>
+                        <br>
+                        <br>
+                        <div class="text-secondary">
+							<b>1)</b> Para obter o primeiro acesso, o responsável do apartamento/loja deve atualizar seu cadastro na portaria;
+							<br>
+							<b>2)</b> Usar o login/senha informada pelo porteiro (lembrar de alterar após o primeiro acesso);
+							<br>
+							<b>3)</b> Incluir os dados de morador(es);
+							<br>
+							<b>4)</b> Incluir os dados do(s) veículo(s).
+							<br>
+							<br>
+							<b>*** Mantenha o cadastro ATUALIZADO ***</b>
+
+						</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="registrar" class="btn w-100 text-light">Aplicar</button>
+                    <!-- <button type="submit" id="validar" class="btn w-100 text-light">Aplicar</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
